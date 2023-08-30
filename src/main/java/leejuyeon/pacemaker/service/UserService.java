@@ -24,6 +24,7 @@ public class UserService {
         foundUser.setMuscleMass(info.getMuscleMass());
         foundUser.setFatMass(info.getFatMass());
         foundUser.setVisibility(info.getVisibility());
+        userRepository.save(foundUser);
 
         return "사용자 정보 수정 완료";
     }
