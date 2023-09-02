@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active: secrets
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3305/pacemaker
@@ -27,6 +30,3 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token               # 토큰 받는 주소
             user-info-uri: https://kapi.kakao.com/v2/user/me             # 사용자정보 가져오는 주소
             user-name-attribute: id                                      # 반드시 필요
-
-  jwt:
-    secret:
