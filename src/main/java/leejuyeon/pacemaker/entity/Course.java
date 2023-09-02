@@ -34,7 +34,7 @@ public class Course {
   private int exerciseCount;
 
   @Enumerated(EnumType.STRING)
-  private ExerciseBodyPart targetedArea;
+  private ExerciseBodyPart exerciseBodyPart;
 
   @Enumerated(EnumType.STRING)
   private ExerciseGoal goal;

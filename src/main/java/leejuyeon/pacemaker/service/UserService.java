@@ -1,5 +1,6 @@
 package leejuyeon.pacemaker.service;
 
+import leejuyeon.pacemaker.OAuth.UserPrincipal;
 import leejuyeon.pacemaker.dto.UserDto;
 import leejuyeon.pacemaker.entity.User;
 import leejuyeon.pacemaker.enums.Error;
@@ -12,21 +13,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    public String updateUserInfo(User user, UserDto.Info info) {
+  public String updateUserInfo(UserPrincipal userPrincipal, UserDto.Update update) {
 
-        User foundUser = userRepository.findById(user.getId())
-                .orElseThrow(() -> new UserException(Error.USER_NOT_FOUND));
+    User user = userRepository.findById(userPrincipal.getUser().getId())
+        .orElseThrow(() -> new UserException(Error.USER_NOT_FOUND));
 
-        foundUser.setNickname(info.getNickname());
-        foundUser.setWeight(info.getWeight());
-        foundUser.setMuscleMass(info.getMuscleMass());
-        foundUser.setFatMass(info.getFatMass());
-        foundUser.setVisibility(info.getVisibility());
-        userRepository.save(foundUser);
+    user.setNickname(update.getNickname());
+    user.setWeight(update.getWeight());
+    user.setMuscleMass(update.getMuscleMass());
+    user.setFatMass(update.getFatMass());
+    user.setVisibility(update.getVisibility());
 
-        return "사용자 정보 수정 완료";
-    }
+    userRepository.save(user);
+
+    return "사용자 정보 수정 완료";
+  }
 
 }
