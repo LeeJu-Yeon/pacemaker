@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserException.class)
-    public ResponseEntity<String> handleUserException(UserException e) {
-        log.error("UserException", e);
-        return ResponseEntity.status(e.getHttpStatus()).body(e.getMessage());
-    }
+  @ExceptionHandler(UserException.class)
+  public ResponseEntity<String> handleUserException(UserException e) {
+    log.error("UserException", e);
+    return ResponseEntity.status(e.getHttpStatus()).body(e.getMessage());
+  }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception e) {
-        log.error("Exception", e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-    }
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<String> handleException(Exception e) {
+    log.error("Exception", e);
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+  }
 
 }
