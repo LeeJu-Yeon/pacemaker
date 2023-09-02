@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: secrets
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3305/pacemaker
+    username: pace
+    password: pace1234
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id:
+            client-secret:
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao   # 라이브러리 사용시 주소형식 고정
+            authorization-grant-type: authorization_code                  # 반드시 필요
+            client-authentication-method: client_secret_post              # 시크릿키 사용시 필수
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize   # 인가코드 받는 주소
+            token-uri: https://kauth.kakao.com/oauth/token               # 토큰 받는 주소
+            user-info-uri: https://kapi.kakao.com/v2/user/me             # 사용자정보 가져오는 주소
+            user-name-attribute: id                                      # 반드시 필요
