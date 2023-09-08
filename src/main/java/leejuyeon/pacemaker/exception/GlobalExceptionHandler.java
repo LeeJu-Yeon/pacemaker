@@ -16,6 +16,12 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(e.getHttpStatus()).body(e.getMessage());
   }
 
+  @ExceptionHandler(PartyException.class)
+  public ResponseEntity<String> handlePartyException(PartyException e) {
+    log.error("PartyException", e);
+    return ResponseEntity.status(e.getHttpStatus()).body(e.getMessage());
+  }
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<String> handleException(Exception e) {
     log.error("Exception", e);
